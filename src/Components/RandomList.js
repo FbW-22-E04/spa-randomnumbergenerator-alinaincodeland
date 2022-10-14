@@ -1,16 +1,27 @@
 import { useState } from "react";
 
 function RandomList() {
-  const [num, setNum] = useState("");
+  const [number, setNumber] = useState([]);
+
+  const numArray = [];
+
+  const generateRandomNumber = () => {
+    let randomNum = Math.floor(Math.random() * 100);
+    numArray = [...number, randomNum];
+    setNumber(numArray);
+  };
+
+  const handleClick = () => {
+    setNumber(generateRandomNumber());
+  };
 
   return (
-    <div className="container">
-      <ul>
-        <li>{Math.floor(Math.random())}</li>
-        <li></li>
-      </ul>
+    <div>
+      <button onClick={handleClick}>Generate a random number!</button>
       <div>
-        <button>Generate a random number!</button>
+        {number.map((number) => {
+          <p>{number} </p>;
+        })}
       </div>
     </div>
   );
